@@ -17,8 +17,8 @@ class PersonCard extends Component {
             <button onClick = { () => this.increaseAge()}>Birthday button for {firstName} {lastName} </button>
         </div>;
     }
-    increaseAge(){
-        this.setState({ age: this.state.age + 1 })
+    increaseAge = () => {
+        this.setState({ age: this.state.age + 1 });
     }
 }
 
