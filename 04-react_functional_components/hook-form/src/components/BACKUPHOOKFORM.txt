@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const HookForm = () => {
+const HookForm = (props) => {
     const [firstName, setFirstName] = useState("");
     const [firstNameError, setFirstNameError] = useState("");
     const [lastName, setLastName] = useState("");
