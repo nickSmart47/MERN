@@ -9,6 +9,7 @@ const BoxGenerator = (props) => {
         e.preventDefault();
         props.onNewBox({boxColor,boxWidth,boxHeight})
         // console.log(props.boxes)
+        setBoxColor("")
     }
     return (
         <div>
