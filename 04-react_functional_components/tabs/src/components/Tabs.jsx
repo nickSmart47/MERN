@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 let arrayofTabs = [{ label: "Tab 1", content: "Tab 1 Content Here" },
-{ label: "Tab 2", content: "hi sweetheart i lovey u" },
+{ label: "Tab 2", content: "Tab 2 content here" },
 { label: "Tab 3", content: "Tab 3 Content Here" },]
 
 const Tabs = () => {
