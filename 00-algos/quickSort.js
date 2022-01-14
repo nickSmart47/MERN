@@ -22,9 +22,9 @@ pivotidx= 0->1->2->3->4
 const partition2 = (arr) => {
     let pivot = arr[0];
     let pivotIdx = 0;
-    for(let i = 1; i < arr.length; i ++){
-        if (pivot > arr[i]){
-            pivotIdx ++;
+    for (let i = 1; i < arr.length; i++) {
+        if (pivot > arr[i]) {
+            pivotIdx++;
             [arr[i], arr[pivotIdx]] = [arr[pivotIdx], arr[i]];
         }
     }
@@ -38,30 +38,41 @@ const partition2 = (arr) => {
 
 // THIS DIDN'T WORK! :(
 
-let x = [4,1,9,7,6,11,8,3,0]
-let y = [2,1,5,7,12,3,4]
+let x = [4, 1, 9, 7, 6, 11, 8, 3, 0]
+let y = [2, 1, 5, 7, 12, 3, 4]
 // console.log(partition2(x))
 // console.log(partition2(y))
 
 
 
-const partition = (arr) =>{
-    let pivot = arr[0];
-    let pivotIndex = 0;
+const partition = (arr, start = 0, end = arr.length - 1) => {
+    let pivot = arr[start];
+    let pivotIndex = start;
     // goal is to iterate through the array and kesep track of how many values are less than our pivot value. 
     // Each time we find a value that is less than pivot value, we increment our counter (pivotIndex)
     // we also want to swap value at current index with the pivot index
-    for (let i = 1; i<arr.length; i++){
-        if(pivot>arr[i]){
-            pivotIndex ++;
+    for (let i = start+1; i <= end; i++) {
+        if (pivot > arr[i]) {
+            pivotIndex++;
             [arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
         }
     }
 
-    [arr[0], arr[pivotIndex]] = [arr[pivotIndex], arr[0]];
+    [arr[start], arr[pivotIndex]] = [arr[pivotIndex], arr[start]];
 
     return pivotIndex
 }
+
+const quickSort = (arr, left = 0, right = arr.length - 1) => {
+    if (left < right) {
+        let pivotIndex = partition(arr, left, right)
+        // console.log('pivot index is -->', pivotIndex)
+        quickSort(arr = arr, left, pivotIndex - 1) // left side
+        quickSort(arr = arr, pivotIndex + 1, right) // right side
+    }
+    return arr;
+}
+
 
 /* 
 
@@ -70,4 +81,4 @@ pivot = 5
 
 */
 
-console.log(partition([5,9,0,7,3,1,9,2]))
+console.log(quickSort([5, 9, 0, 7, 3, 1, 9, 2]))
