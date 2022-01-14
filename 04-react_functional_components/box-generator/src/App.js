@@ -4,7 +4,7 @@ import BoxDisplay from './components/BoxDisplay';
 import { useState } from 'react';
 
 function App() {
-  const [boxes, setBoxes] = useState("")
+  const [boxes, setBoxes] = useState([""]) // should be empty array inside??
 
   const createNewBox = (newBox) => {
     setBoxes(boxes => [...boxes, newBox]);
