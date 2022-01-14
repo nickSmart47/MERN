@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 let arrayofTabs = [{ label: "Tab 1", content: "Tab 1 Content Here" },
-{ label: "Tab 2", content: "Tab 2 Content Here" },
+{ label: "Tab 2", content: "hi sweetheart i lovey u" },
 { label: "Tab 3", content: "Tab 3 Content Here" },]
 
 const Tabs = () => {
@@ -9,9 +9,10 @@ const Tabs = () => {
     const [currentTabContent, setCurrentTabContent] = useState(currentTab.content)
     const handleClickTab = (e) => {
         e.preventDefault();
-        // console.log(e.target.value)
-        setCurrentTab(e.target.value)
-        console.log(currentTab)
+        let newTabValue = parseInt(e.target.value)
+        console.log(typeof(newTabValue))
+        setCurrentTab(newTabValue)
+        // console.log(currentTab)
         // console.log(arrayofTabs[currentTab].content)
 
     }
@@ -19,7 +20,7 @@ const Tabs = () => {
         <div className="container">
             <div className = "d-flex justify-content-center gap-1">
                 {arrayofTabs.map((tab, i) =>
-                    <button onClick ={handleClickTab} className = {currentTab === {i} ? "active" : ""} key={i} value = {i}>{tab.label}</button>)}
+                    <button onClick ={handleClickTab} className = {currentTab === i ? "active container" : "container"}  key={i} value = {i}>{tab.label}</button>)}
             </div>
             <div className = "d-flex justify-content-center gap-1 border">
                 <p>{arrayofTabs[currentTab].content}</p>
