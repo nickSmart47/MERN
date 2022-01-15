@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import { useEffect } from 'react';
 
 const Todo = (props) => {
     const [todo, setTodo] = useState("")
@@ -6,11 +7,17 @@ const Todo = (props) => {
 
     let [listOfTodos, setListOfTodos] = useState([]);
 
+    // useEffect(() => {
+    //     localStorage.setItem("todo", String(todo))
+    // }, [todo])
+
     const createTodo = (e) => {
         e.preventDefault();
         let todoObj = { todo, todoCompletion };
         // console.log(todoObj)
         setListOfTodos([...listOfTodos, todoObj])
+        // localStorage.setItem("todo", String(todoObj.todo))
+        // console.log(localStorage)
     }
 
     const toggleCompletion = (idx)=>{
