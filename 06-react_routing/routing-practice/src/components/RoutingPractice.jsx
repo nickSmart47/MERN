@@ -2,20 +2,27 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 
-const WordOrNumber = (props) => {
-    // console.log(props)
+const WordOrNumber = () => {
     const { wordOrNumber, textColor, backgroundColor } = useParams();
     console.log({ wordOrNumber, textColor, backgroundColor })
-    // console.log(useParams())
     if (isNaN(wordOrNumber)) {
-        return (
-            <div style={{ backgroundColor: backgroundColor, color: textColor }}>
-                <h1>{wordOrNumber}</h1>
-            </div>
-        );
+        if (backgroundColor)
+            return (
+                <div style={{ backgroundColor: backgroundColor, color: textColor }}>
+                    <h1>The word is: {wordOrNumber}</h1>
+                </div>
+            );
+        else {
+            console.log("GOT TO THE ESLSE")
+            return (
+                <div>
+                    <h1>The word is: {wordOrNumber}</h1>
+                </div>
+            );
+        }
     }
     else {
-        // const { number } = useParams();
+        console.log("WEGGOTHERESR")
         return (
             <h1>The number is: {wordOrNumber} </h1>
         )
