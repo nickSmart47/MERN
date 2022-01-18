@@ -22,7 +22,7 @@ function strToWordArr(str) {
     return result;
 }
 
-console.log(strToWordArr("  Welcome    to week    two!!!!")) //["Welcome", "to", "week", "two!"]
+console.log(strToWordArr("  Welcome    to week    two!!!! o who aa   whatuyp asd   ")) //["Welcome", "to", "week", "two!"]
 // console.log(strToWordArr("  Welcome  to week    two!   "))
 
 
