@@ -32,7 +32,7 @@ const StarWarsDisplay = (props, history) => {
                     droids()
                 });
         }
-        console.log(homeworldData)
+        // console.log(homeworldData)
     }
 
     const droids = () => {
