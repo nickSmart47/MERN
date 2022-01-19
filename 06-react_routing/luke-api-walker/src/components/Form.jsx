@@ -18,15 +18,19 @@ const Form = (props) => {
 
     return (
         <div className="App p-2">
-            <form onSubmit={makeApiCall} className="container d-flex justify-content-center align-items-center gap-3">
-                <p className="mt-2">Search for:</p>
-                <select onChange={(e) => setCategory(e.target.value)} name="category" id="">
-                    <option value="people">people</option>
-                    <option value="planets">planets</option>
-                </select>
-                <label htmlFor="id">ID: </label>
-                <input type="number" onChange={(e) => setId(e.target.value)} name="id" id="" />
-                <input type="submit" value="Search" />
+            <form onSubmit={makeApiCall} className="container d-flex flex-row justify-content-center align-items-center gap-3">
+                <div className="form-group d-flex justify-content-center align-items-center gap-4">
+                    <label className="d-flex">Search for:</label>
+                    <select className="form-select" onChange={(e) => setCategory(e.target.value)} name="category" id="">
+                        <option value="people">people</option>
+                        <option value="planets">planets</option>
+                    </select>
+                </div>
+                <div className="form-group d-flex justify-content-center align-items-center gap-4">
+                    <label htmlFor="id">ID: </label>
+                    <input className="form-control" type="number" onChange={(e) => setId(e.target.value)} name="id" id="" />
+                    <input className="btn btn-primary" type="submit" value="Search" />
+                </div>
             </form>
         </div>
     );
