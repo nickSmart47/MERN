@@ -7,7 +7,6 @@ import obiwan from './obiwan.jpg';
 const StarWarsDisplay = (props, history) => {
     const { category, id } = useParams();
     let [data, setData] = useState();
-    // console.log(id)
     let [theseArentTheDroids, setTheseArentTheDroids] = useState(false);
     useEffect(() => {
         axios.get(`https://swapi.dev/api/${category}/${id}`).then(response => { setData(response.data) })
@@ -53,7 +52,7 @@ const StarWarsDisplay = (props, history) => {
         return (
             <>
                 <h1>These aren't the droids you're looking for...</h1>
-                <img src={obiwan} style={{ width: "25rem" }} alt="Obi Wan Kenobi" />
+                <img src={obiwan} style={{ width: "23rem" }} alt="Obi Wan Kenobi" />
             </>
         )
 
