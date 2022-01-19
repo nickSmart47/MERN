@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import StarWarsDisplay from './Display';
-import axios from 'axios';
+import React, { useState } from 'react';
+// import StarWarsDisplay from './Display';
+// import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 const Form = (props) => {

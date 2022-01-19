@@ -7,25 +7,38 @@ import obiwan from './obiwan.jpg';
 const StarWarsDisplay = (props, history) => {
     const { category, id } = useParams();
     let [data, setData] = useState();
+
+    let [homeworldData, setHomeworldData] = useState('');
+
     let [theseArentTheDroids, setTheseArentTheDroids] = useState(false);
+
     useEffect(() => {
-        axios.get(`https://swapi.dev/api/${category}/${id}`).then(response => { setData(response.data) })
+        axios.get(`https://swapi.dev/api/${category}/${id}`).then(response => { setData(response.data) }
+        )
             .catch(err => {
                 console.log("error!!--->", err)
                 droids()
                 // console.log(theseArentTheDroids)
-
             });
     }, [])
-    // console.log(theseArentTheDroids)
-    // console.log(data)
 
-    const droids = () =>{
+    if (category === 'people' && id != 0 && data) {
+        if (homeworldData == '') {
+            axios.get(`${data.homeworld}`).then(response => { setHomeworldData(response.data) })
+                .catch(err => {
+                    console.log("error!!--->", err)
+                    droids()
+                });
+        }
+    }
+
+    const droids = () => {
         setTheseArentTheDroids(true)
     }
 
     if (data) {
-        if (category == "people") {
+        if (category === "people") {
+
             return (
                 <div className="p-2 container d-flex flex-column">
                     <h3>{data.name}</h3>
@@ -33,6 +46,7 @@ const StarWarsDisplay = (props, history) => {
                     <p><strong>Mass: </strong> {data.mass}</p>
                     <p><strong>Hair Color: </strong> {data.hair_color}</p>
                     <p><strong>Skin Color: </strong> {data.skin_color}</p>
+                    <p><strong>Homeworld: </strong> {homeworldData.name}</p>
                 </div>
             )
         }
