@@ -8,17 +8,25 @@ const StarWarsDisplay = (props, history) => {
     const { category, id } = useParams();
     let [data, setData] = useState();
     // console.log(id)
-
-    useEffect(()=> {
+    let [theseArentTheDroids, setTheseArentTheDroids] = useState(false);
+    useEffect(() => {
         axios.get(`https://swapi.dev/api/${category}/${id}`).then(response => { setData(response.data) })
             .catch(err => {
                 console.log("error!!--->", err)
+                droids()
+                // console.log(theseArentTheDroids)
+
             });
     }, [])
+    // console.log(theseArentTheDroids)
+    // console.log(data)
 
-    console.log(data)
+    const droids = () =>{
+        setTheseArentTheDroids(true)
+    }
+
     if (data) {
-        if (category == "people"){
+        if (category == "people") {
             return (
                 <div className="p-2 container d-flex flex-column">
                     <h3>{data.name}</h3>
@@ -41,19 +49,19 @@ const StarWarsDisplay = (props, history) => {
             )
         }
     }
-    else if (data==undefined){
+    else if (theseArentTheDroids) {
         return (
-            <h1>Fetching, please wait...</h1>
+            <>
+                <h1>These aren't the droids you're looking for...</h1>
+                <img src={obiwan} style={{ width: "25rem" }} alt="Obi Wan Kenobi" />
+            </>
         )
+
     }
     else {
         return (
-            <>
-            <h1>These aren't the droids you're looking for...</h1>
-            <img src={obiwan} style = {{width:"25rem"}}alt="Obi Wan Kenobi" />
-            </>
-            )
-
+            <h1>Fetching, please wait...</h1>
+        )
     }
 
 }
