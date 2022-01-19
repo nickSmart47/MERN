@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import obiwan from './obiwan.jpg';
 
@@ -12,6 +12,8 @@ const StarWarsDisplay = (props, history) => {
 
     let [theseArentTheDroids, setTheseArentTheDroids] = useState(false);
 
+    // let [clicked, setClicked] = useState(false);
+
     useEffect(() => {
         axios.get(`https://swapi.dev/api/${category}/${id}`).then(response => { setData(response.data) }
         )
@@ -20,10 +22,10 @@ const StarWarsDisplay = (props, history) => {
                 droids()
                 // console.log(theseArentTheDroids)
             });
-    }, [])
+    }, [] )
 
-    if (category === 'people' && id != 0 && data) {
-        if (homeworldData == '') {
+    if (category === 'people' && id !== 0 && data) {
+        if (homeworldData === '') {
             axios.get(`${data.homeworld}`).then(response => { setHomeworldData(response.data) })
                 .catch(err => {
                     console.log("error!!--->", err)
@@ -40,7 +42,7 @@ const StarWarsDisplay = (props, history) => {
     const getHomeworldLink = () => {
         if (data.homeworld){
             let homeworldLink = data.homeworld
-                console.log(homeworldLink)
+                // console.log(homeworldLink)
                 let homeworldNumber = ''
                 for (let i = 0; i< homeworldLink.length; i++){
                     if (isNaN(homeworldLink[i])){
