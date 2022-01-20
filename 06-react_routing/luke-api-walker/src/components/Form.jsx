@@ -13,7 +13,13 @@ const Form = (props) => {
 
     const makeApiCall = (e) => {
         e.preventDefault();
+        // console.log({ category, id })
+        // if (id !== ''){
         history.push(`/${category}/${id}`);
+        // }
+        // else{
+        //     history.push(`/${category}/asdasdas}`);
+        // }
     }
 
     return (

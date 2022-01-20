@@ -6,7 +6,10 @@ import obiwan from './obiwan.jpg';
 
 const StarWarsDisplay = (props, history) => {
     const { category, id } = useParams();
+    // console.log({category, id})
+
     const location = useLocation();
+    // console.log(location)
     let [data, setData] = useState();
 
     let [homeworldData, setHomeworldData] = useState('');
@@ -21,8 +24,8 @@ const StarWarsDisplay = (props, history) => {
                 droids()
                 // console.log(theseArentTheDroids)
             });
-    }, [location] )
-    
+    }, [location])
+
     const droids = () => {
         setTheseArentTheDroids(true)
         return (
@@ -34,21 +37,21 @@ const StarWarsDisplay = (props, history) => {
     }
 
     const getHomeworldLink = () => {
-        if (data.homeworld){
+        if (data.homeworld) {
             let homeworldLink = data.homeworld
-                // console.log(homeworldLink)
-                let homeworldNumber = ''
-                for (let i = 0; i< homeworldLink.length; i++){
-                    if (isNaN(homeworldLink[i])){
-                        continue
-                    }
-                    else{
-                        homeworldNumber += homeworldLink[i]
-                    }
+            // console.log(homeworldLink)
+            let homeworldNumber = ''
+            for (let i = 0; i < homeworldLink.length; i++) {
+                if (isNaN(homeworldLink[i])) {
+                    continue
                 }
-                homeworldLink = `/planets/${homeworldNumber}`
-                // console.log(homeworldLink)
-                return homeworldLink
+                else {
+                    homeworldNumber += homeworldLink[i]
+                }
+            }
+            homeworldLink = `/planets/${homeworldNumber}`
+            // console.log(homeworldLink)
+            return homeworldLink
 
         }
     }
@@ -63,8 +66,8 @@ const StarWarsDisplay = (props, history) => {
     //     }
     //     // console.log(homeworldData)
     // }
-    
-    if (id === 0 || id === undefined){
+
+    if (id === 0 || id === undefined || !id) {
         droids()
     }
 
