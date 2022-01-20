@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // import { useHistory } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import obiwan from './obiwan.jpg';
 
 const StarWarsDisplay = (props, history) => {
     const { category, id } = useParams();
+    const location = useLocation();
     let [data, setData] = useState();
 
     let [homeworldData, setHomeworldData] = useState('');
 
     let [theseArentTheDroids, setTheseArentTheDroids] = useState(false);
-
-    // let [clicked, setClicked] = useState(false);
 
     useEffect(() => {
         axios.get(`https://swapi.dev/api/${category}/${id}`).then(response => { setData(response.data) }
@@ -22,21 +21,16 @@ const StarWarsDisplay = (props, history) => {
                 droids()
                 // console.log(theseArentTheDroids)
             });
-    }, [] )
-
-    if (category === 'people' && id !== 0 && data) {
-        if (homeworldData === '') {
-            axios.get(`${data.homeworld}`).then(response => { setHomeworldData(response.data) })
-                .catch(err => {
-                    console.log("error!!--->", err)
-                    droids()
-                });
-        }
-        // console.log(homeworldData)
-    }
-
+    }, [location] )
+    
     const droids = () => {
         setTheseArentTheDroids(true)
+        return (
+            <>
+                <h1>These aren't the droids you're looking for...</h1>
+                <img src={obiwan} style={{ width: "23rem" }} alt="Obi Wan Kenobi" />
+            </>
+        )
     }
 
     const getHomeworldLink = () => {
@@ -58,9 +52,35 @@ const StarWarsDisplay = (props, history) => {
 
         }
     }
+    // console.log("type of id is" + id.typeof)
+    // if (category === 'people' && id !== 0 && data) {
+    //     if (homeworldData === '') {
+    //         axios.get(`${data.homeworld}`).then(response => { setHomeworldData(response.data) })
+    //             .catch(err => {
+    //                 console.log("error!!--->", err)
+    //                 droids()
+    //             });
+    //     }
+    //     // console.log(homeworldData)
+    // }
+    
+    if (id === 0 || id === undefined){
+        droids()
+    }
 
-    if (data) {
+
+    else if (data) {
         if (category === "people") {
+            if (id !== 0 && data) {
+                if (homeworldData === '') {
+                    axios.get(`${data.homeworld}`).then(response => { setHomeworldData(response.data) })
+                        .catch(err => {
+                            console.log("error!!--->", err)
+                            droids()
+                        });
+                }
+                // console.log(homeworldData)
+            }
             return (
                 <div className="p-2 container d-flex flex-column">
                     <h3>{data.name}</h3>

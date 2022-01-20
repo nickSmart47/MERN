@@ -12,7 +12,7 @@ const Form = (props) => {
 
 
     const makeApiCall = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         history.push(`/${category}/${id}`);
     }
 
