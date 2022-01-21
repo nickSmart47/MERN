@@ -13,12 +13,15 @@ const Form = (props) => {
 
     const makeApiCall = (e) => {
         e.preventDefault();
-        // console.log({ category, id })
-        // if (id !== ''){
+        console.log({ category, id })
+        // if (id === ''){
+        //     setId(0)
+        // }
+        // if (id !== '') {
         history.push(`/${category}/${id}`);
         // }
-        // else{
-        //     history.push(`/${category}/asdasdas}`);
+        // else {
+        // history.push(`/${category}/0}`);
         // }
     }
 
