@@ -33,7 +33,25 @@ app.get('/api/quotes/:idx', (req, res) =>{
     res.json({results: quotes[req.params.idx]})
 })
 
+// add a new quote
 app.post('/api/quotes', (req, res)=>{
+    quotes.push(req.body)
+    res.json({count: quotes.length,results: quotes})
+})
+
+app.put('/api/quotes/:idx', (req, res) =>{
+    // two parts to a put request --> which thing we want to update (idx) and what data we want to use to update it with (req.body)
+
+    quotes[req.params.idx] = req.body // update quotes array at specified index (coming from the route) with form information
+
+    res.json({count: quotes.length, results: quotes})
+})
+
+
+app.delete('/api/quotes/:idx', (req,res)=>{
+    // you can use splice to remove something from an array
+    quotes.splice(req.params.idx,1)
+
     res.json({count: quotes.length, results: quotes})
 })
 
