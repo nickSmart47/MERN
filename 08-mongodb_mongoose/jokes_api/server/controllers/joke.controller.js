@@ -21,27 +21,27 @@ module.exports.findOneJoke = (req, res) => {
 }
 
 module.exports.findOneRandomJoke = (req, res) => {
+    // simple way using aggregate mongoose function
     Joke.aggregate([{ $sample: { size: 1 }}])
         .then(randomJoke => {
             res.json({results: randomJoke})
         })
-        .catch(err => res.json({message: "Something went wrong", error: err })) 
+        .catch(err => res.json({message: "Something went wrong", error: err }))  
+}
 
+module.exports.findRandomJoke = (req, res)=>{
+    // more traditional way using Math.random
+    console.log("trying to find a random joke")
 
-    // let random
-    // Joke.countDocuments({})
-    //     .then(count =>{
-    //         // console.log(count)
-    //         random = Math.floor(Math.random() * count)
-    //         // console.log("random number is ---->", random)
-    //         // console.log("type of random is --->", typeof(random))
-    //     })
-    //     .then(Joke.findOne().skip(random)
-    //         .then(randomJoke =>{
-    //             console.log('random is currently', random)
-    //             res.json({results: randomJoke, random: random})
-    //         })
-    //         .catch(err => res.json({message: "Something went wrong", error: err })))
+    function getRandomInt(max){
+        return Math.floor(Math.random() * max);
+    }
+    Joke.find()
+        .then(allJokes =>{
+            let randomIndex = getRandomInt(allJokes.length)
+            res.json({results: allJokes[randomIndex]})
+        })
+        .catch(err => res.json({message: "Something went wrong", error: err }))
 }
 
 module.exports.createNewJoke = (req, res) => {
