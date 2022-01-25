@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
     
 const Detail = (props) => {
     const [product, setProduct] = useState({})
@@ -15,10 +15,11 @@ const Detail = (props) => {
     
     // console.log(product)
     return (
-        <div>
-            <p>Title: {product.title}</p>
-            <p>Price: ${product.price}</p>
-            <p>Description: {product.description}</p>
+        <div className ="d-flex flex-column justify-content-center align-items-center gap-3 p-2">
+            <h2>{product.title}</h2>
+            <p><strong>Price:</strong> ${product.price}</p>
+            <p><strong>Description:</strong> {product.description}</p>
+            <Link to={`/products/${product._id}/edit/`}><button className="btn btn-primary">Edit</button></Link>
         </div>
     )
 }
