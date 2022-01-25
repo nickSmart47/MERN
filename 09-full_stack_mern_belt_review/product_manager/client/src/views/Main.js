@@ -17,11 +17,11 @@ const Main = (props) => {
     })
 
     return (
-        <>
+        <div className="container d-flex flex-column ">
             <ProductForm />
             <hr />
             {loaded && <ProductList products={products} />}
-        </>
+        </div>
     )
 
 }

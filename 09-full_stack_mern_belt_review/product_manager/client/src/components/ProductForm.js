@@ -20,7 +20,7 @@ export default props => {
 
     return(
         <form onSubmit={onSubmitHandler}>
-            <p>
+            <p className="form-group">
                 <label >Title: </label>
                 <input type="text" onChange={e=>setTitle(e.target.value)} />
             </p>

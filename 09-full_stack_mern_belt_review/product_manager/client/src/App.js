@@ -7,7 +7,7 @@ import { BrowserRouter, Switch, Route, Routes } from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App container">
         <Routes>
           <Route path="products/" element={<Main />} />
           <Route path="products/:id" element={<Detail />} />
