@@ -21,26 +21,27 @@ module.exports.findOneJoke = (req, res) => {
 }
 
 module.exports.findOneRandomJoke = (req, res) => {
-    let random
-    Joke.count({})
-        .then(count =>{
-            // console.log(count)
-            random = Math.floor(Math.random() * count)
-            console.log("random number is ---->", random)
-            console.log("type of random is --->", typeof(random))
+    Joke.aggregate([{ $sample: { size: 1 }}])
+        .then(randomJoke => {
+            res.json({results: randomJoke})
         })
-        .then(Joke.findOne().skip(random)
-            .then(randomJoke =>{
-                console.log('random is currently', random)
-                res.json({results: randomJoke, random: random})
-            })
-            .catch(err => res.json({message: "Something went wrong", error: err })))
-    // console.log(count)
-    // Joke.findOne().skip(random)
-    //     .then(randomJoke =>{
-    //         res.json({results: randomJoke})
+        .catch(err => res.json({message: "Something went wrong", error: err })) 
+
+
+    // let random
+    // Joke.countDocuments({})
+    //     .then(count =>{
+    //         // console.log(count)
+    //         random = Math.floor(Math.random() * count)
+    //         // console.log("random number is ---->", random)
+    //         // console.log("type of random is --->", typeof(random))
     //     })
-    //     .catch(err => res.json({message: "Something went wrong", error: err })) 
+    //     .then(Joke.findOne().skip(random)
+    //         .then(randomJoke =>{
+    //             console.log('random is currently', random)
+    //             res.json({results: randomJoke, random: random})
+    //         })
+    //         .catch(err => res.json({message: "Something went wrong", error: err })))
 }
 
 module.exports.createNewJoke = (req, res) => {
