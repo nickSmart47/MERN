@@ -35,7 +35,9 @@ function union(arr1, arr2) {
 // console.log(union([1, 2, 2, 2, 7], [2, 2, 6, 6, 7, 7, 7, 7])) //[1,2,2,2,6,6,7,7,7,7]
 
 const unionRecursive = (arr1, arr2, arr1Runner = 0, arr2Runner = 0, output = []) => {
-    console.log({arr1Runner, arr2Runner})
+    // console.log({arr1Runner, arr2Runner})
+    
+    // Base Case or Base Condition
     if ((arr1Runner >= arr1.length) && (arr2Runner >= arr2.length)){  //if we have reached the end of both arrays
         return output;
     }
