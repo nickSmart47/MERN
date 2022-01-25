@@ -18,8 +18,10 @@ const Main = (props) => {
 
     return (
         <div className="container d-flex flex-column ">
+            <h1>Product Manager</h1>
             <ProductForm />
             <hr />
+            <h2>Product List:</h2>
             {loaded && <ProductList products={products} />}
         </div>
     )

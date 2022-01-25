@@ -19,22 +19,22 @@ export default props => {
     }
 
     return(
-        <form onSubmit={onSubmitHandler}>
-            <p className="form-group">
+        <form className = "d-flex flex-column gap-3 mt-2 justify-content-center align-items-center bg-light"onSubmit={onSubmitHandler}>
+            <div className="d-flex gap-3 form-group border border-secondary p-2 bg-light">
                 <label >Title: </label>
                 <input type="text" onChange={e=>setTitle(e.target.value)} />
-            </p>
-            <p>
+            </div>
+            <div className="d-flex gap-3 form-group border border-secondary p-2 bg-light">
                 <label >Price: </label>
                 <input type="number" onChange={e=>setPrice(e.target.value)} />
-            </p>
-            <p>
+            </div>
+            <div className="d-flex gap-3 form-group border border-secondary p-2 bg-light">
                 <label >Description: </label>
                 <input type="text" onChange={e=>setDescription(e.target.value)} />
-            </p>
-            <p>
-                <input type="submit" value="Submit" />
-            </p>
+            </div>
+            <div className="form-group">
+                <input class ="btn btn-primary"type="submit" value="Submit" />
+            </div>
         </form>
         )
 
