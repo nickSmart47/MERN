@@ -6,10 +6,14 @@ import DeleteButton from '../components/DeleteButton';
 
 const Update = (props) => {
     const { id } = useParams();
+
+    /* old way
     // const { id } = props;
     // const [title, setTitle] = useState('');
     // const [price, setPrice] = useState(0);
     // const [description, setDescription] = useState('');
+    */
+
     const [product, setProduct] = useState();
     const [loaded, setLoaded] = useState(false);
     const history = useHistory();
@@ -18,10 +22,13 @@ const Update = (props) => {
     useEffect(() => {
         axios.get('http://localhost:8000/api/products/' + id)
             .then(res => {
+
+                /* old way
                 // console.log(res.data)
                 // setTitle(res.data[0].title);
                 // setPrice(res.data[0].price);
                 // setDescription(res.data[0].description);
+                */
                 setProduct(res.data)
                 setLoaded(true)
             })
