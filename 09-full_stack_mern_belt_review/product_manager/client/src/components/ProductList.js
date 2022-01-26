@@ -18,16 +18,17 @@ const ProductList = (props) => {
     return (
         <div>
             {props.products.map((product, i) =>
-                <p key={i}>{product.title}
-                    <Link to={`/products/${product._id}`}>
-                        <button className="btn btn-secondary m-2">
-                            Details
+                <div key={i}>
+                    <p>{product.title}</p>
+                        <Link to={`/products/${product._id}`}>
+                            <button className="btn btn-secondary m-2">
+                                Details
+                            </button>
+                        </Link>
+                        <button className="btn btn-danger m-2" onClick={(e) => { deleteProduct(product._id) }}>
+                            Delete
                         </button>
-                    </Link>
-                    <button className="btn btn-danger m-2" onClick={(e) => { deleteProduct(product._id) }}>
-                        Delete
-                    </button>
-                </p>
+                </div>
             )}
         </div>
     )

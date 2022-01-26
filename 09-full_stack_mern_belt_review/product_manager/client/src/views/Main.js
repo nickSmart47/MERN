@@ -20,13 +20,21 @@ const Main = (props) => {
         setProducts(products.filter(product => product._id != productId))
     }
 
+    const createProduct = product => {
+        axios.post('http://localhost:8000/api/products', product)
+            .then(res => {
+                setProducts([...products, res.data])
+            })
+            .catch(err => console.log("Error: ", err))
+    }
+
     return (
         <div className="container d-flex flex-column ">
             <h1>Product Manager</h1>
-            <ProductForm />
+            <ProductForm onSubmitProp={createProduct} initialTitle="" initialPrice={0} initialDescription="" />
             <hr />
             <h2>All Products:</h2>
-            {loaded && <ProductList products={products} removeFromDom = {removeFromDom} />}
+            {loaded && <ProductList products={products} removeFromDom={removeFromDom} />}
         </div>
     )
 
