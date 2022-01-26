@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams, useHistory } from "react-router-dom";
 import ProductForm from '../components/ProductForm';
+import DeleteButton from '../components/DeleteButton';
 
 const Update = (props) => {
     const { id } = useParams();
@@ -38,21 +39,26 @@ const Update = (props) => {
     }
 
     return (
-    <>
+        <div>
+            <h1>Update a Product</h1>
+            {loaded && (
+                <>
+                    <ProductForm
+                        onSubmitProp={updateProduct}
+                        initialTitle={product[0].title}
+                        initialPrice={product[0].price}
+                        initialDescription={product[0].description}
+                    />
 
-        {loaded && (
-            <ProductForm
-            onSubmitProp={updateProduct}
-            initialTitle= {product[0].title}
-            initialPrice= {product[0].price}
-            initialDescription= {product[0].description}
-            />
-        )}
-
-    </>
+                    <DeleteButton productId={product[0]._id}
+                        successCallback={() => history.push('/products')}
+                    />
+                </>
+            )}
+        </div>
     )
-    
-    
+
+
 }
 
 export default Update;

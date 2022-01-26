@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import DeleteButton from './DeleteButton';
 
 const ProductList = (props) => {
     const { removeFromDom } = props;
@@ -25,9 +26,7 @@ const ProductList = (props) => {
                                 Details
                             </button>
                         </Link>
-                        <button className="btn btn-danger m-2" onClick={(e) => { deleteProduct(product._id) }}>
-                            Delete
-                        </button>
+                        <DeleteButton productId={product._id} successCallback={()=>removeFromDom(product._id)} />
                 </div>
             )}
         </div>
@@ -36,3 +35,7 @@ const ProductList = (props) => {
 
 export default ProductList;
 
+// old button
+{/* <button className="btn btn-danger m-2" onClick={(e) => { deleteProduct(product._id) }}>
+                            Delete
+                        </button> */}

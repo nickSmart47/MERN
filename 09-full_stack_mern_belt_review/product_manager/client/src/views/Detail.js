@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useParams, useHistory } from "react-router-dom";
+import DeleteButton from '../components/DeleteButton';
     
 const Detail = (props) => {
     const [product, setProduct] = useState({})
@@ -36,9 +37,12 @@ const Detail = (props) => {
             <p><strong>Description:</strong> {product.description}</p>
             <div className = "d-flex align-items-center gap-3">
                 <Link to={`/products/${product._id}/edit/`}><button className="btn btn-primary">Edit</button></Link>
-                <button className="btn btn-danger" onClick={(e) => { deleteProduct(product._id) }}>
+                <DeleteButton productId={product._id}
+                        successCallback={() => history.push("/products")}
+                    />
+                {/* <button className="btn btn-danger" onClick={(e) => { deleteProduct(product._id) }}>
                             Delete
-                        </button>
+                        </button> */}
             </div>
         </div>
     )
