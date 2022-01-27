@@ -7,6 +7,8 @@ const Main = (props) => {
     const [products, setProducts] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
+    let [errors, setErrors] = useState({});
+
     useEffect(() => {
         axios.get('http://localhost:8000/api/products')
             .then(res => {
@@ -24,13 +26,18 @@ const Main = (props) => {
         axios.post('http://localhost:8000/api/products', product)
             .then(res => {
                 setProducts([...products, res.data])
+                if(res.data.error){
+                    setErrors(res.data.error.errors)
+                    console.log(errors)
+                }
             })
-            .catch(err => console.log("Error: ", err))
+            .catch(err => console.log("error in post request", err))
     }
 
     return (
         <div className="container d-flex flex-column ">
             <h1>Product Manager</h1>
+            {/* {errors.map((err, index) => <p key={index}>{err}</p>)} */}
             <ProductForm onSubmitProp={createProduct} initialTitle="" initialPrice={0} initialDescription="" />
             <hr />
             <h2>All Products:</h2>
