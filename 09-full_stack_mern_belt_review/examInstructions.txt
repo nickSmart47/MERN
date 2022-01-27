@@ -1,0 +1,13 @@
+/*
+1. steps to upload exam: remove node-modules in both the client folder and project folder
+2. compress the folder now that it is small enough to compress and upload
+3. if you want those node modules back after upload the zip, go into project folder and type "npm i" to reinstall the back end node modules
+4. to reinstall the front end node moodules --> cd into client and type "npm i"
+*/
+
+
+Project Week assignment:
+    a. Create a trello account: https://trello.com/
+    b. Create a wireframe using balsamiq or draw.io or any other tool you find
+    c. Create user stories in trello
+    d. Create ERD (what your db should look like and the tables you will have)
