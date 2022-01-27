@@ -33,7 +33,7 @@ const AuthorList = (props) => {
                 <p>Add an author</p>
             </Link>
             <h5>We have quotes by: </h5>
-            <table class="table">
+            <table className="table">
                 <thead>
                     <tr className="d-flex justify-content-center gap-5">
                         <th scope="col">Author</th>
@@ -41,18 +41,23 @@ const AuthorList = (props) => {
                     </tr>
                 </thead>
 
-                {allAuthors.map((author, i) => {
-                    return (
-                        <tbody>
+                <tbody>
+                    {allAuthors.map((author, i) => {
+                        return (
                             <tr key={i} className="d-flex justify-content-center gap-5">
-                                <th scope="row">{author.name}</th>
-                                <td className="d-flex gap-3"><Link to={`/edit/${author._id}`}><button className="btn btn-primary">Edit</button></Link>
-                                    <button onClick={() => deleteAuthor(author._id)} className="btn btn-danger">Delete</button></td>
+                                <th scope="row">
+                                    {author.name}
+                                </th>
+                                <td className="d-flex gap-3">
+                                    <Link to={`/edit/${author._id}`}><button className="btn btn-primary">Edit</button>
+                                    </Link>
+                                    <button onClick={() => deleteAuthor(author._id)} className="btn btn-danger">Delete</button>
+                                </td>
                             </tr>
 
-                        </tbody>
-                    )
-                })}
+                        )
+                    })}
+                    </tbody>
             </table>
         </>
     );

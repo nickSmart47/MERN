@@ -40,7 +40,7 @@ function EditAuthorForm(props) {
             .then(res=>{
                 console.log("response after successful put request ihere", res)
                 if (res.data.errors) {
-                    console.log('we got errors bro', res.data.error)
+                    console.log('we got errors bro', res.data.errors)
                     setFormErrors(res.data.errors)
                 }
                 else {
