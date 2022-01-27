@@ -27,13 +27,14 @@ module.exports.getAuthor = (req, res) => {
 module.exports.updateAuthor = (req, res) => {
     Author.findOneAndUpdate({ _id: req.params.id },
         req.body,
-        { new: true, runValidators: true }
+        { new: true, runValidators: true}
     )
         .then(updatedAuthor => {
             // console.log(res.json)
             res.json(updatedAuthor)
         })
-        .catch(err => response.status(400).json(err))
+        .catch(err => {console.log(err)
+            res.json(err)})
 }
 module.exports.deleteAuthor = (req, res) => {
     Author.deleteOne({ _id: req.params.id })

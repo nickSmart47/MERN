@@ -46,8 +46,8 @@ const AuthorList = (props) => {
                         <tbody>
                             <tr key={i} className="d-flex justify-content-center gap-5">
                                 <th scope="row">{author.name}</th>
-                                <td className="d-flex gap-3"><Link to ={`/edit/${author._id}`}><button className="btn btn-primary">Edit</button></Link>
-                                <button onClick = {()=>deleteAuthor(author._id)} className="btn btn-danger">Delete</button></td>
+                                <td className="d-flex gap-3"><Link to={`/edit/${author._id}`}><button className="btn btn-primary">Edit</button></Link>
+                                    <button onClick={() => deleteAuthor(author._id)} className="btn btn-danger">Delete</button></td>
                             </tr>
 
                         </tbody>

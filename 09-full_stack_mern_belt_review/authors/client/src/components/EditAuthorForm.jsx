@@ -39,13 +39,13 @@ function EditAuthorForm(props) {
         axios.put(`http://localhost:8000/api/authors/${id}`, authorInfo)
             .then(res=>{
                 console.log("response after successful put request ihere", res)
-                // if (res.data.error) {
-                //     console.log('we got errors bro', res.data.error)
-                //     // setFormErrors(res.data.errors)
-                // }
-                // else {
+                if (res.data.errors) {
+                    console.log('we got errors bro', res.data.error)
+                    setFormErrors(res.data.errors)
+                }
+                else {
                     history.push('/')
-                // }
+                }
             })
             .catch(err => {console.log("put request error here", err)
         }
