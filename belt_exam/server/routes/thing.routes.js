@@ -1,4 +1,4 @@
-const ThingController = require('../controllers/Thing.controller');
+const ThingController = require('../controllers/thing.controller');
 
 module.exports = (app) => {
     app.post('/api/things', ThingController.createThing)

@@ -1,11 +1,16 @@
 const { response } = require('express');
-const { Thing } = require('../models/Thing.model')
+const { Thing } = require('../models/thing.model')
 
 
 module.exports.createThing = (req, res) => {
-    const { name } = req.body;
+    const { name, type, description, skillOne, skillTwo, skillThree } = req.body;
     Thing.create({
-        name
+        name,
+        type,
+        description,
+        skillOne,
+        skillTwo,
+        skillThree
     })
         .then(things => res.json(things))
         .catch(err => res.json(err))
@@ -13,14 +18,14 @@ module.exports.createThing = (req, res) => {
 
 
 module.exports.getAllThings = (req, res) => {
-    Thing.find({})
+    Thing.find({}).sort([['type', 1]])
         .then(things => res.json(things))
         .catch(err => res.json(err))
 }
 
 module.exports.getThing = (req, res) => {
     Thing.find({ _id: req.params.id })
-        .then(thing => res.json(Thing))
+        .then(thing => res.json(thing))
         .catch(err => res.json(err))
 }
 
